@@ -87,7 +87,7 @@ fun ComposeAnalogClock(
         }
 
         val secondRatio = second / 60f
-        val minuteRatio = minute / 60f
+        val minuteRatio = (minute + secondRatio) / 60f
         val hourRatio = (hour + minuteRatio) / 12f
 
         //step 5: draw clock hour hand
