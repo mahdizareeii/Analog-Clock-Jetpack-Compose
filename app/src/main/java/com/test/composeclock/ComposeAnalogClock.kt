@@ -15,11 +15,13 @@ import java.util.*
 fun ComposeAnalogClock(
     clockBackgroundColor: Color = Color.Black,
     clockThicknessColor: Color = Color.Gray,
-    hourMarkersColor: Color = Color.White,
-    minuteMarkersColor: Color = Color.White,
+    clockHourMarkersColor: Color = Color.White,
+    clockMinuteMarkersColor: Color = Color.White,
+    /** clock hand color **/
     hourHandColor: Color = Color.White,
     minuteHandColor: Color = Color.White,
     secondHandColor: Color = Color.Red,
+    /** current time in milli seconds **/
     timeInMillis: () -> Long
 ) {
     //parsing time
@@ -61,10 +63,10 @@ fun ComposeAnalogClock(
                 val start = center - Offset(0f, circleRadius)
                 val end = start + Offset(0f, minuteMarkerLength)
                 drawLine(
-                    color = minuteMarkersColor,
+                    color = clockMinuteMarkersColor,
                     start = start,
                     end = end,
-                    strokeWidth = 5f
+                    strokeWidth = 2f
                 )
             }
         }
@@ -76,7 +78,7 @@ fun ComposeAnalogClock(
                 val start = center - Offset(0f, circleRadius)
                 val end = start + Offset(0f, hourMarkerLength)
                 drawLine(
-                    color = hourMarkersColor,
+                    color = clockHourMarkersColor,
                     start = start,
                     end = end,
                     strokeWidth = 8f
