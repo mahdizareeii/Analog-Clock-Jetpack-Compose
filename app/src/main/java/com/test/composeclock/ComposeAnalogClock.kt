@@ -57,7 +57,7 @@ fun ComposeAnalogClock(
         )
 
         //step 3: draw clock minute markers
-        val minuteMarkerLength = circleRadius / 15f
+        val minuteMarkerLength = circleRadius / 20f
         repeat(60) {
             rotate((it / 60f) * 360) {
                 val start = center - Offset(0f, circleRadius)
