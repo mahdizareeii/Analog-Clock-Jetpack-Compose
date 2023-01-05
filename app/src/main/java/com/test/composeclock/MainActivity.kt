@@ -32,8 +32,8 @@ class MainActivity : ComponentActivity() {
                             delay(1000)
                         }
                     }
-                    
-                    ComposeAnalogClock(time = { time })
+
+                    ComposeAnalogClock(timeInMillis = { time })
                 }
             }
         }

@@ -13,19 +13,20 @@ import java.util.*
 
 @Composable
 fun ComposeAnalogClock(
-    clockBackgroundColor: Color = MaterialTheme.colors.secondary,
-    clockThicknessColor: Color = MaterialTheme.colors.error,
-    hourMarkerColor: Color = Color.Black,
-    minuteMarkerColor: Color = Color.Gray,
-    hourHandColor: Color = Color.Black,
-    minuteHandColor: Color = Color.Magenta,
+    clockBackgroundColor: Color = Color.Black,
+    clockThicknessColor: Color = Color.Gray,
+    hourMarkersColor: Color = Color.White,
+    minuteMarkersColor: Color = Color.White,
+    hourHandColor: Color = Color.White,
+    minuteHandColor: Color = Color.White,
     secondHandColor: Color = Color.Red,
-    time: () -> Long
+    timeInMillis: () -> Long
 ) {
     //parsing time
-    val calendar = Calendar.getInstance()
-    val date = Date(time.invoke())
-    calendar.time = date
+    val date = Date(timeInMillis.invoke())
+    val calendar = Calendar.getInstance().apply {
+        time = date
+    }
     val second = calendar.get(Calendar.SECOND)
     val minute = calendar.get(Calendar.MINUTE)
     val hour = calendar.get(Calendar.HOUR_OF_DAY)
@@ -60,7 +61,7 @@ fun ComposeAnalogClock(
                 val start = center - Offset(0f, circleRadius)
                 val end = start + Offset(0f, minuteMarkerLength)
                 drawLine(
-                    color = minuteMarkerColor,
+                    color = minuteMarkersColor,
                     start = start,
                     end = end,
                     strokeWidth = 5f
@@ -75,7 +76,7 @@ fun ComposeAnalogClock(
                 val start = center - Offset(0f, circleRadius)
                 val end = start + Offset(0f, hourMarkerLength)
                 drawLine(
-                    color = hourMarkerColor,
+                    color = hourMarkersColor,
                     start = start,
                     end = end,
                     strokeWidth = 8f
@@ -99,7 +100,7 @@ fun ComposeAnalogClock(
         rotate(minuteRatio * 360) {
             drawLine(
                 color = minuteHandColor,
-                start = center - Offset(0f, circleRadius * 0.7f),
+                start = center - Offset(0f, circleRadius * 0.8f),
                 end = center,
                 strokeWidth = 5f
             )
@@ -112,7 +113,7 @@ fun ComposeAnalogClock(
                 color = hourHandColor,
                 start = center - Offset(0f, circleRadius * 0.5f),
                 end = center,
-                strokeWidth = 7f
+                strokeWidth = 6f
             )
         }
     }
