@@ -86,19 +86,21 @@ fun ComposeAnalogClock(
             }
         }
 
-        //step 5: draw clock second hand
         val secondRatio = second / 60f
-        rotate(secondRatio * 360) {
+        val minuteRatio = minute / 60f
+        val hourRatio = (hour + minuteRatio) / 12f
+
+        //step 5: draw clock hour hand
+        rotate(hourRatio * 360) {
             drawLine(
-                color = secondHandColor,
-                start = center - Offset(0f, circleRadius * 0.9f),
+                color = hourHandColor,
+                start = center - Offset(0f, circleRadius * 0.5f),
                 end = center,
-                strokeWidth = 4f
+                strokeWidth = 6f
             )
         }
 
         //step 6: draw clock minute hand
-        val minuteRatio = minute / 60f
         rotate(minuteRatio * 360) {
             drawLine(
                 color = minuteHandColor,
@@ -108,14 +110,13 @@ fun ComposeAnalogClock(
             )
         }
 
-        //step 7: draw clock hour hand
-        val hourRatio = (hour + minuteRatio) / 12f
-        rotate(hourRatio * 360) {
+        //step 7: draw clock second hand
+        rotate(secondRatio * 360) {
             drawLine(
-                color = hourHandColor,
-                start = center - Offset(0f, circleRadius * 0.5f),
+                color = secondHandColor,
+                start = center - Offset(0f, circleRadius * 0.9f),
                 end = center,
-                strokeWidth = 6f
+                strokeWidth = 4f
             )
         }
     }
